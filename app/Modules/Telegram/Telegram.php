@@ -183,4 +183,8 @@ class Telegram
         $request = Http::get("https://api.telegram.org/file/bot{$this->token}/{$path}");
         return $request->body();
     }
+
+    public function __destruct()
+    {
+    }
 }
