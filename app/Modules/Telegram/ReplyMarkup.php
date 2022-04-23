@@ -4,6 +4,8 @@
 namespace App\Modules\Telegram;
 
 
+use Illuminate\Support\Str;
+
 class ReplyMarkup
 {
     /**
@@ -17,9 +19,9 @@ class ReplyMarkup
     private $resize_keyboard = false;
 
     /**
-     * @var bool $is_inline
+     * @var bool $is_inline_keyboard
      */
-    private $is_inline = false;
+    private $is_inline_keyboard = false;
 
     /**
      * @var bool $is_keyboard
@@ -63,10 +65,19 @@ class ReplyMarkup
     /**
      * @return $this
      */
+    public function reply(): ReplyMarkup
+    {
+        $this->initKeyboardType('is_keyboard');
+
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
     public function inline(): ReplyMarkup
     {
-        $this->is_inline = true;
-        $this->is_keyboard = false;
+        $this->initKeyboardType('is_inline_keyboard');
 
         return $this;
     }
@@ -76,8 +87,8 @@ class ReplyMarkup
      */
     public function removeKeyboard(): ReplyMarkup
     {
-        $this->is_remove_keyboard = true;
-        $this->is_keyboard = false;
+        $this->initKeyboardType('is_remove_keyboard');
+
         return $this;
     }
 
@@ -86,8 +97,8 @@ class ReplyMarkup
      */
     public function forceKeyboard(): ReplyMarkup
     {
-        $this->is_force_reply = true;
-        $this->is_keyboard = false;
+        $this->initKeyboardType('is_force_reply');
+
         return $this;
     }
 
@@ -97,6 +108,7 @@ class ReplyMarkup
     public function oneTimeKeyboard(): ReplyMarkup
     {
         $this->one_time_keyboard = true;
+
         return $this;
     }
 
@@ -106,6 +118,7 @@ class ReplyMarkup
     public function resizeKeyboard(): ReplyMarkup
     {
         $this->resize_keyboard = true;
+
         return $this;
     }
 
@@ -132,7 +145,7 @@ class ReplyMarkup
             $this->keyboard['resize_keyboard'] = $this->resize_keyboard;
         }
 
-        if ($this->is_inline) {
+        if ($this->is_inline_keyboard) {
             $this->keyboard['inline_keyboard'] = $keyboard;
         }
 
@@ -144,4 +157,18 @@ class ReplyMarkup
             $this->keyboard['force_reply'] = true;
         }
     }
+
+    /**
+     * @param string $keyboard
+     * @return void
+     */
+    private function initKeyboardType(string $keyboard)
+    {
+        $keyboard = Str::replace('is_', '', $keyboard);
+
+        foreach ($this->keyboard_types as $keyboard_type) {
+            $this->$keyboard_type = $keyboard === $keyboard_type;
+        }
+    }
+
 }
