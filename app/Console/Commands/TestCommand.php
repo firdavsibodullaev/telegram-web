@@ -44,7 +44,7 @@ class TestCommand extends Command
 
         $telegram = new Telegram();
         $i = 0;
-        while ($i < 1000) {
+        while ($i < 100) {
             $i++;
             $telegram->send('sendMessage', [
                 'chat_id' => 287956415,
