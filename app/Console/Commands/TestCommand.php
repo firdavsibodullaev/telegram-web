@@ -44,7 +44,7 @@ class TestCommand extends Command
 
         $telegram = new Telegram();
         $i = 0;
-        while ($i < 100) {
+        while ($i < 1000) {
             $i++;
             $telegram->send('sendMessage', [
                 'chat_id' => 287956415,
@@ -52,6 +52,9 @@ class TestCommand extends Command
             ]);
 
             $this->info((memory_get_usage() / 1024 / 1024) . " MB");
+            if ($i % 30 === 0) {
+                sleep(1);
+            }
         }
 
         $difference = number_format((microtime(true) - $start) * 1000, 2);
