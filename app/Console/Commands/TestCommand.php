@@ -51,7 +51,7 @@ class TestCommand extends Command
                 'text' => "Test Message number: {$i}"
             ]);
             $telegram = null;
-            $this->info((memory_get_usage() / 1024 / 1024) . " MB");
+            $this->info((memory_get_usage(true) / 1024 / 1024) . " MB");
             if ($i % 30 === 0) {
                 sleep(1);
             }
