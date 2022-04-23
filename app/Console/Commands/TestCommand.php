@@ -50,7 +50,7 @@ class TestCommand extends Command
                 'chat_id' => 287956415,
                 'text' => "Test Message number: {$i}"
             ]);
-            unset($telegram);
+            $telegram = null;
             $this->info((memory_get_usage() / 1024 / 1024) . " MB");
             if ($i % 30 === 0) {
                 sleep(1);
