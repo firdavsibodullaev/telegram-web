@@ -51,10 +51,10 @@ class TestCommand extends Command
 //                'text' => "Test Message number: {$i}"
 //            ]);
 //            $telegram = null;
-            $this->info((memory_get_usage() / 1024 / 1024) . " MB");
-            if ($i % 30 === 0) {
-                sleep(1);
-            }
+            $this->info((memory_get_usage() / 1024 / 1024) . " MB   {$i}");
+//            if ($i % 30 === 0) {
+//                sleep(1);
+//            }
         }
 
         $difference = number_format((microtime(true) - $start) * 1000, 2);
