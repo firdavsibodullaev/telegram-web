@@ -50,6 +50,8 @@ class TestCommand extends Command
                 'chat_id' => 287956415,
                 'text' => "Test Message number: {$i}"
             ]);
+
+            $this->info((memory_get_usage() / 1024 / 1024) . " MB");
         }
 
         $difference = number_format((microtime(true) - $start) * 1000, 2);
