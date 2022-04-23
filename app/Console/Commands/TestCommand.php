@@ -43,14 +43,14 @@ class TestCommand extends Command
         $this->info($start);
 
         $i = 0;
+        $telegram = new Telegram();
         while ($i < 1000) {
             $i++;
-            $telegram = new Telegram();
-            $telegram->send('sendMessage', [
-                'chat_id' => 287956415,
-                'text' => "Test Message number: {$i}"
-            ]);
-            $telegram = null;
+//            $telegram->send('sendMessage', [
+//                'chat_id' => 287956415,
+//                'text' => "Test Message number: {$i}"
+//            ]);
+//            $telegram = null;
             $this->info((memory_get_usage(true) / 1024 / 1024) . " MB");
             if ($i % 30 === 0) {
                 sleep(1);
