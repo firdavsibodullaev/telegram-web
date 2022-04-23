@@ -43,9 +43,9 @@ class TestCommand extends Command
         $this->info($start);
 
         $i = 0;
+        $telegram = new Telegram();
         while ($i < 100) {
             $i++;
-            $telegram = new Telegram();
             $telegram->send('sendMessage', [
                 'chat_id' => 287956415,
                 'text' => "Test Message number: {$i}"
