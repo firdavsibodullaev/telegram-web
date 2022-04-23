@@ -43,7 +43,7 @@ class TestCommand extends Command
         $this->info($start);
 
         $i = 0;
-        while ($i < 1000) {
+        while ($i < 100) {
             $i++;
             $telegram = new Telegram();
             $telegram->send('sendMessage', [
