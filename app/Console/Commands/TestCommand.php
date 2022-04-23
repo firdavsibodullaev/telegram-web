@@ -42,15 +42,15 @@ class TestCommand extends Command
         $start = microtime(true);
         $this->info($start);
 
-        $telegram = new Telegram();
         $i = 0;
         while ($i < 1000) {
             $i++;
+            $telegram = new Telegram();
             $telegram->send('sendMessage', [
                 'chat_id' => 287956415,
                 'text' => "Test Message number: {$i}"
             ]);
-
+            unset($telegram);
             $this->info((memory_get_usage() / 1024 / 1024) . " MB");
             if ($i % 30 === 0) {
                 sleep(1);
