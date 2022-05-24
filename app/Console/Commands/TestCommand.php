@@ -44,7 +44,7 @@ class TestCommand extends Command
 
         $i = 0;
         $telegram = new Telegram();
-        while ($i < 100) {
+        while ($i < 1000) {
             $i++;
             $a = $telegram->send('sendMessage', [
                 'chat_id' => 287956415,
@@ -54,7 +54,7 @@ class TestCommand extends Command
 
             $this->info((memory_get_usage() / 1024 / 1024) . " MB   {$i}");
             if ($i % 20 === 0) {
-                sleep(1);
+                sleep(2);
             }
         }
 
@@ -63,6 +63,7 @@ class TestCommand extends Command
             'chat_id' => 287956415,
             'text' => "Duration: {$difference}"
         ]);
+
         return 0;
     }
 }
