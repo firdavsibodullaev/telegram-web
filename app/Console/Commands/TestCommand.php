@@ -52,7 +52,7 @@ class TestCommand extends Command
             ]);
             unset($a);
 
-            $this->info((memory_get_usage() / 1024 / 1024) . " MB   {$i}");
+            $this->info((memory_get_peak_usage() / 1024 / 1024) . " MB   {$i}");
             if ($i % 20 === 0) {
                 sleep(2);
             }
